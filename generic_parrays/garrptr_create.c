@@ -47,6 +47,7 @@ void		arrptr_destroy(t_arrptr *aa)
 			i++;
 		}
 	}
+	free(a->data);
 	free(a);
 }
 

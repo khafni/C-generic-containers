@@ -35,6 +35,18 @@ t_array			empty_garr_64(t_destruct obj_des, int cell_size)
 
 void			garr_destroy(t_array a)
 {
+	t_array		a;
+	int			i;
+
+	i = 0;
+	if (a->obj_des != NULL)
+	{
+		while (i < a->len)
+		{
+			(*(a->obj_des)) (a->data + i);
+			i++;
+		}
+	}
 	free(a->data);
 	free(a);
 }
