@@ -6,9 +6,14 @@
 /*   By: khafni <khafni@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 01:40:36 by khafni            #+#    #+#             */
-/*   Updated: 2020/12/19 18:23:34 by khafni           ###   ########.fr       */
+/*   Updated: 2020/12/19 18:54:11 by khafni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/*
+** dynamic generic array of any data type as long as
+** you know its size
+*/
 
 #ifndef GARRAY_H
 # define GARRAY_H
