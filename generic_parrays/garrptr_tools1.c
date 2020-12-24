@@ -18,8 +18,8 @@ void		arrptr_set(t_arrptr a, int index, void *obj)
 
 	newalc = 1 + 2 * index;
 	if (index >= a->alloc)
-		a->data = realloc(a->data, newalc * sizeof(void*));
-		//a->data =  memory_grow(a->data, a->alloc * sizeof(void*), newalc * sizeof(void*));
+		//a->data = realloc(a->data, newalc * sizeof(void*));
+		a->data =  memory_grow(a->data, a->alloc * sizeof(void*), newalc * sizeof(void*));
 		
 	if (index >= a->len)
 		a->len = index + 1;

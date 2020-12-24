@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "generic_parrays/garrptr.h"
-#include "generic_arrays/garray.h"
 
 typedef struct _weapon s_weapon;
 typedef struct _weapon *t_weapon;
@@ -27,9 +26,8 @@ t_weapon weapon(char *name, int power_level)
 void weapon_destroy(void *_w)
 {
 	t_weapon w = (t_weapon)_w;
-	w = NULL;
-	//free(w->name);
-	//free(w);
+	free(w->name);
+	free(w);
 }
 
 void weapon_add(t_arrptr arr, t_weapon w)
@@ -55,9 +53,6 @@ int main()
 
 	
 	arr = empty_arrptr_create(weapon_destroy);
-	//for (int i = 0; i < 20000; i++)
-		weapon_add(arr,weapon("ice sword", 3));
-	/*
 	weapon_add(arr, weapon("magical wand", 20));
 	weapon_add(arr, weapon("ak-47", 500));
 	weapon_add(arr, weapon("red sword", 5));
@@ -68,8 +63,9 @@ int main()
 	weapon_add(arr, weapon("fleshlight", 1999));
 	weapon_add(arr, weapon("god", 0));
 	weapon_add(arr, weapon("catgirl", 1000000));
-	*/
-	//weapons_print(arr);
+	//printf("%s", w->name);
+	weapons_print(arr);
 	arrptr_destroy(arr);
+	//weapon_destroy(w);
 	return (0);
 }

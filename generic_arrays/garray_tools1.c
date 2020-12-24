@@ -18,7 +18,7 @@ void			garr_set(t_array a, int index, void *obj)
 
 	newalc = 1 + 2 * index;
 	if (index >= a->alloc)
-		memory_grow(a->data, a->alloc * a->cell_size, newalc * a->cell_size);
+		a->data = memory_grow(a->data, a->alloc * a->cell_size, newalc * a->cell_size);
 	if (index >= a->len)
 		a->len = index + 1;
 	memory_copy((a->data + index * a->cell_size), obj, a->cell_size);

@@ -41,7 +41,7 @@ void		arrptr_destroy(t_arrptr a)
 	{
 		while (i < a->len)
 		{
-			(*(a->obj_des)) (a->data + i);
+			(*(a->obj_des)) (arrptr_get(a, i));
 			i++;
 		}
 	}
