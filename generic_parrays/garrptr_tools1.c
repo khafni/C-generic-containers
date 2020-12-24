@@ -6,7 +6,7 @@
 /*   By: khafni <khafni@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 01:06:56 by khafni            #+#    #+#             */
-/*   Updated: 2020/12/19 17:28:56 by khafni           ###   ########.fr       */
+/*   Updated: 2020/12/24 17:35:32 by khafni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ void		arrptr_set(t_arrptr a, int index, void *obj)
 
 	newalc = 1 + 2 * index;
 	if (index >= a->alloc)
-		memory_grow(a->data, a->alloc * sizeof(void*), newalc * sizeof(void*));
+		a->data = realloc(a->data, newalc * sizeof(void*));
+		//a->data =  memory_grow(a->data, a->alloc * sizeof(void*), newalc * sizeof(void*));
+		
 	if (index >= a->len)
 		a->len = index + 1;
 	a->data[index] = obj;

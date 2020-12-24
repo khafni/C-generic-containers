@@ -6,7 +6,7 @@
 /*   By: khafni <khafni@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 16:52:19 by khafni            #+#    #+#             */
-/*   Updated: 2020/12/19 17:11:15 by khafni           ###   ########.fr       */
+/*   Updated: 2020/12/24 17:35:07 by khafni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,22 @@ void	*memory_copy(void *dst, const void *src, size_t n)
 	return (dst);
 }
 
-void	memory_grow(void *address, size_t old_size, size_t new_size)
+void	*memory_grow(void *address, size_t old_size, size_t new_size)
 {
 	void *tmp;
 
 	if ((tmp = malloc(new_size)) == NULL)
-		return ;
+		return (NULL);
 	memory_copy(tmp, address, old_size);
 	free(address);
-	address = tmp;
+	return (tmp);
+}
+
+void	vp_swap(void *v1, void *v2)
+{
+	void	*tmp;
+
+	tmp = v1;
+	v1 = v2;
+	v2 = tmp;
 }

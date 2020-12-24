@@ -6,7 +6,7 @@
 /*   By: khafni <khafni@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 16:34:00 by khafni            #+#    #+#             */
-/*   Updated: 2020/12/19 17:07:53 by khafni           ###   ########.fr       */
+/*   Updated: 2020/12/24 17:31:13 by khafni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,12 @@ void	*memory_copy(void *dst, const void *src, size_t n);
 **	grow allocated memory from old_size bytes size to new_size
 **	bytes size
 */
-void	memory_grow(void *address, size_t old_size, size_t new_size);
+void	*memory_grow(void *address, size_t old_size, size_t new_size);
+
+/*
+**  swapping two void pointers addresses
+*/
+
+void	vp_swap(void *v1, void *v2);
+
 #endif

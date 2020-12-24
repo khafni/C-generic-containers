@@ -6,7 +6,7 @@
 /*   By: khafni <khafni@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 01:40:36 by khafni            #+#    #+#             */
-/*   Updated: 2020/12/19 18:54:11 by khafni           ###   ########.fr       */
+/*   Updated: 2020/12/20 10:38:52 by khafni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include "../memory_tools.h"
 
 typedef void	(*t_destruct)(void *obj);
+typedef int		(*t_comp)(void *obj1, void *obj2);
 typedef struct s_array	*t_array;
 
 struct			s_array
@@ -73,4 +74,5 @@ void			garr_set(t_array a, int index, void *obj);
 ** (c++ vectors push back method)
 */
 void			garr_add(t_array a, void *obj);
+
 #endif

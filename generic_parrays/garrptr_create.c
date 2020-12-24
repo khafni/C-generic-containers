@@ -6,7 +6,7 @@
 /*   By: khafni <khafni@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 00:40:42 by khafni            #+#    #+#             */
-/*   Updated: 2020/12/19 01:42:04 by khafni           ###   ########.fr       */
+/*   Updated: 2020/12/24 18:31:52 by khafni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,11 @@ t_arrptr	empty_arrptr_create(t_destructor obj_des)
 	return (a);
 }
 
-void		arrptr_destroy(t_arrptr *aa)
+void		arrptr_destroy(t_arrptr a)
 {
-	t_arrptr	a;
 	int			i;
 
 	i = 0;
-	a = *aa;
 	if (a->obj_des != NULL)
 	{
 		while (i < a->len)
