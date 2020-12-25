@@ -6,7 +6,7 @@
 /*   By: khafni <khafni@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 16:25:27 by khafni            #+#    #+#             */
-/*   Updated: 2020/12/19 18:29:39 by khafni           ###   ########.fr       */
+/*   Updated: 2020/12/25 11:33:36 by khafni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ void			garr_set(t_array a, int index, void *obj)
 {
 	size_t newalc;
 
-	newalc = 1 + 2 * index;
+	newalc = (1 + 2 * index) * a->cell_size;
 	if (index >= a->alloc)
-		a->data = memory_grow(a->data, a->alloc * a->cell_size, newalc * a->cell_size);
+		a->data = memory_grow(a->data, a->alloc * a->cell_size, newalc);
 	if (index >= a->len)
 		a->len = index + 1;
 	memory_copy((a->data + index * a->cell_size), obj, a->cell_size);

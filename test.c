@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "generic_parrays/garrptr.h"
+#include "generic_arrays/garray.h"
 #include "heaps/heap.h"
 
 typedef struct _weapon s_weapon;
@@ -27,22 +28,21 @@ void weapon_destroy(void *_w)
 {
 	t_weapon w = (t_weapon)_w;
 	free(w->name);
-	free(w);
 }
 
-void weapon_add(t_arrptr arr, t_weapon w)
+void weapon_add(t_array arr, t_weapon w)
 {
 	void *wp = (void*)w;
-	arrptr_add(arr, wp);
+	garr_add(arr, wp);
 }
 
-void weapons_print (t_arrptr arr)
+void weapons_print (t_array arr)
 {
 	t_weapon w;
 
 	for (int i = 0; i < arr->len; i++)
 	{
-		w = (t_weapon)arr->data[i];
+		w = (t_weapon)garr_get(arr, i);
 		printf("\n___________________\n||weapon name : %s|| \n ||weapon power level : %d||\n_________________\n", w->name, w->power_level);
 	}
 }
@@ -58,10 +58,9 @@ int		weapons_compare(const void *_w1, const void *_w2)
 
 int main()
 {
-	t_arrptr arr;
+	t_array arr;
 
-	
-	arr = empty_arrptr_create(weapon_destroy);
+	arr = empty_garr_64(weapon_destroy, sizeof(struct s_array));
 	weapon_add(arr, weapon("magical wand", 1));
 	
 	weapon_add(arr, weapon("ak-47", 3));
@@ -74,21 +73,8 @@ int main()
 	weapon_add(arr, weapon("fleshlight", 1999));
 	weapon_add(arr, weapon("god", 0));
 	weapon_add(arr, weapon("catgirl", 1000000));
-	t_heap h = standard_heap_create(weapons_compare, NULL);
-	for (int i = 0; i < arr->len; i++)
-		heap_add(h, arrptr_get(arr, i));
-	//weapons_print(h);
-		
-	for (int i = 0; i < arr->len; i++)
-	{
-		arrptr_set(arr, i, heap_get_head_value(h));
-		heap_delete_head_value(h);
-	}
-	
 	weapons_print(arr);
-	heap_destroy(h);
-	arrptr_destroy(arr);
-
+	garr_destroy(arr);
 	//weapon_destroy(w);
 	return (0);
 }

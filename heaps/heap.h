@@ -6,7 +6,7 @@
 /*   By: khafni <khafni@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 11:15:59 by khafni            #+#    #+#             */
-/*   Updated: 2020/12/24 16:07:51 by khafni           ###   ########.fr       */
+/*   Updated: 2020/12/25 11:21:45 by khafni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,10 @@ int			heap_get_smallest_child_index(t_heap h, int i);
 void		heap_add(t_heap h, void *n);
 
 void		heap_delete_head_value(t_heap h);
+
+/*
+**	sorting any array no matter its elements data type
+*/
+void		heap_sort(void *array, size_t nitems, size_t c_size, t_compar cmp);
+
 #endif

@@ -6,7 +6,7 @@
 /*   By: khafni <khafni@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 01:55:05 by khafni            #+#    #+#             */
-/*   Updated: 2020/12/19 16:25:10 by khafni           ###   ########.fr       */
+/*   Updated: 2020/12/25 11:31:56 by khafni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_array			empty_garr_64(t_destruct obj_des, int cell_size)
 }
 
 void			garr_destroy(t_array a)
-{	
+{
 	int			i;
 
 	i = 0;

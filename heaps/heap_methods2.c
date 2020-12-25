@@ -6,7 +6,7 @@
 /*   By: khafni <khafni@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 07:46:01 by khafni            #+#    #+#             */
-/*   Updated: 2020/12/24 15:47:42 by khafni           ###   ########.fr       */
+/*   Updated: 2020/12/25 10:58:22 by khafni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int		heap_get_smallest_child_index(t_heap h, int i)
 void	heap_add(t_heap h, void *n)
 {
 	int		index;
-	int		parent_index;	
+	int		parent_index;
 
 	arrptr_add(h, n);
 	if (h->len > 1)
@@ -64,10 +64,7 @@ void	heap_add(t_heap h, void *n)
 			parent_index = heap_get_parent_index(h, index);
 			if ((*(h->obj_cmp))(h->data[index], h->data[parent_index]) < 0)
 			{
-				 void* tmp = h->data[index];
-	     		h->data[index] = h->data[parent_index];
-	      		h->data[parent_index] = tmp;
-				//vp_swap(h->data[index], h->data[parent_index]);
+				vp_swap(&h->data[index], &h->data[parent_index]);
 				index = parent_index;
 			}
 			else
@@ -97,14 +94,9 @@ void	heap_delete_head_value(t_heap h)
 			s_ch_index = heap_get_smallest_child_index(h, index);
 			if ((*(h->obj_cmp))(h->data[index], h->data[s_ch_index]) > 0)
 			{
-				//vp_swap(h->data[index], h->data[s_ch_index]);
-				void* tmp = h->data[index];
-	     		h->data[index] = h->data[s_ch_index];
-	      		h->data[s_ch_index] = tmp;
+				vp_swap(&h->data[index], &h->data[s_ch_index]);
 				index = s_ch_index;
 			}
-			else
-				break ;
 		}
 	}
 }
