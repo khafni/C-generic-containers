@@ -17,8 +17,7 @@ struct _weapon
 t_weapon weapon(char *name, int power_level)
 {
 	t_weapon w;
-
-	w = (t_weapon) malloc(sizeof(struct _weapon));
+	
 	w->name = strdup(name);	
 	w->power_level = power_level;
 	return (w);
@@ -60,7 +59,7 @@ int main()
 {
 	t_array arr;
 
-	arr = empty_garr_64(weapon_destroy, sizeof(struct s_array));
+	arr = empty_garr_64(weapon_destroy, sizeof(s_weapon));
 	weapon_add(arr, weapon("magical wand", 1));
 	
 	weapon_add(arr, weapon("ak-47", 3));
