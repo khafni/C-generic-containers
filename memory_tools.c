@@ -46,11 +46,11 @@ void	*memory_grow(void *address, size_t old_size, size_t new_size)
 	return (tmp);
 }
 
-void	vp_swap(void *v1, void *v2)
+void	vp_swap(void **v1, void **v2)
 {
-	void	*tmp;
+	void *tmp;
 
-	tmp = v1;
-	v1 = v2;
-	v2 = tmp;
+	tmp = *v1;
+	*v1 = *v2;
+	*v2 = tmp;
 }

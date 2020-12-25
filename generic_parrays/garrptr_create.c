@@ -16,7 +16,7 @@ t_arrptr	empty_arrptr_create_size(int size, t_destructor obj_des)
 {
 	t_arrptr a;
 
-	a = malloc(sizeof(t_arrptr));
+	a = malloc(sizeof(struct s_arrptr));
 	a->len = 0;
 	a->alloc = size;
 	a->data = malloc(sizeof(void *) * a->alloc);

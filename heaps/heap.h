@@ -43,6 +43,8 @@ int			heap_get_parent_index(t_heap h, int i);
 
 int			heap_get_left_child_index(t_heap h, int i);
 
+int			heap_get_right_child_index(t_heap h, int i);
+
 int			heap_count_children(t_heap h, int i);
 
 void		*heap_get_head_value(t_heap h);

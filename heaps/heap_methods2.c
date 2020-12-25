@@ -53,8 +53,7 @@ int		heap_get_smallest_child_index(t_heap h, int i)
 void	heap_add(t_heap h, void *n)
 {
 	int		index;
-	int		parent_index;
-	void	*tmp;
+	int		parent_index;	
 
 	arrptr_add(h, n);
 	if (h->len > 1)
@@ -64,7 +63,13 @@ void	heap_add(t_heap h, void *n)
 		{
 			parent_index = heap_get_parent_index(h, index);
 			if ((*(h->obj_cmp))(h->data[index], h->data[parent_index]) < 0)
-				vp_swap(h->data[index], h->data[parent_index]);
+			{
+				 void* tmp = h->data[index];
+	     		h->data[index] = h->data[parent_index];
+	      		h->data[parent_index] = tmp;
+				//vp_swap(h->data[index], h->data[parent_index]);
+				index = parent_index;
+			}
 			else
 				break ;
 		}
@@ -76,7 +81,6 @@ void	heap_delete_head_value(t_heap h)
 	int		index;
 	int		last;
 	int		s_ch_index;
-	void	*tmp;
 
 	if (h->len == 0)
 		return ;
@@ -92,7 +96,13 @@ void	heap_delete_head_value(t_heap h)
 		{
 			s_ch_index = heap_get_smallest_child_index(h, index);
 			if ((*(h->obj_cmp))(h->data[index], h->data[s_ch_index]) > 0)
-				vp_swap(h->data[index], h->data[s_ch_index]);
+			{
+				//vp_swap(h->data[index], h->data[s_ch_index]);
+				void* tmp = h->data[index];
+	     		h->data[index] = h->data[s_ch_index];
+	      		h->data[s_ch_index] = tmp;
+				index = s_ch_index;
+			}
 			else
 				break ;
 		}

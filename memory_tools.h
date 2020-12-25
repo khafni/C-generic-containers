@@ -32,6 +32,6 @@ void	*memory_grow(void *address, size_t old_size, size_t new_size);
 **  swapping two void pointers addresses
 */
 
-void	vp_swap(void *v1, void *v2);
+void	vp_swap(void **v1, void **v2);
 
 #endif
