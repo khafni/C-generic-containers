@@ -14,10 +14,20 @@ struct _weapon
 	int		power_level;
 };
 
+s_weapon weapon2(char *name, int power_level)
+{
+	s_weapon w;
+	
+	w.name = strdup(name);	
+	w.power_level = power_level;
+	return (w);
+}
+
 t_weapon weapon(char *name, int power_level)
 {
 	t_weapon w;
 	
+	w = (t_weapon) malloc(sizeof(s_weapon));
 	w->name = strdup(name);	
 	w->power_level = power_level;
 	return (w);
@@ -32,6 +42,12 @@ void weapon_destroy(void *_w)
 void weapon_add(t_array arr, t_weapon w)
 {
 	void *wp = (void*)w;
+	garr_add(arr, wp);
+}
+
+void weapon_add2(t_array arr, s_weapon w)
+{
+	void *wp = (void*)&w;
 	garr_add(arr, wp);
 }
 
@@ -60,18 +76,18 @@ int main()
 	t_array arr;
 
 	arr = empty_garr_64(weapon_destroy, sizeof(s_weapon));
-	weapon_add(arr, weapon("magical wand", 1));
+	weapon_add2(arr, weapon2("magical wand", 1));
 	
-	weapon_add(arr, weapon("ak-47", 3));
-	weapon_add(arr, weapon("red sword", 8));
-	weapon_add(arr, weapon("mlassa1", 5));
+	weapon_add2(arr, weapon2("ak-47", 3));
+	weapon_add2(arr, weapon2("red sword", 8));
+	weapon_add2(arr, weapon2("mlassa1", 5));
 	
-	weapon_add(arr, weapon("mlassa2", -9));
-	weapon_add(arr, weapon("mlassa3", 6));
-	weapon_add(arr, weapon("dragon dildo", 2000));
-	weapon_add(arr, weapon("fleshlight", 1999));
-	weapon_add(arr, weapon("god", 0));
-	weapon_add(arr, weapon("catgirl", 1000000));
+	weapon_add2(arr, weapon2("mlassa2", -9));
+	weapon_add2(arr, weapon2("mlassa3", 6));
+	weapon_add2(arr, weapon2("dragon dildo", 2000));
+	weapon_add2(arr, weapon2("fleshlight", 1999));
+	weapon_add2(arr, weapon2("god", 0));
+	weapon_add2(arr, weapon2("catgirl", 1000000));
 	weapons_print(arr);
 	garr_destroy(arr);
 	//weapon_destroy(w);
