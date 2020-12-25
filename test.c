@@ -61,6 +61,17 @@ void weapons_print (t_array arr)
 		printf("\n___________________\n||weapon name : %s|| \n ||weapon power level : %d||\n_________________\n", w->name, w->power_level);
 	}
 }
+
+void weapons_print2 (t_arrptr arr)
+{
+	t_weapon w;
+
+	for (int i = 0; i < arr->len; i++)
+	{
+		w = (t_weapon)arrptr_get(arr, i);
+		printf("\n___________________\n||weapon name : %s|| \n ||weapon power level : %d||\n_________________\n", w->name, w->power_level);
+	}
+}
 int		weapons_compare(const void *_w1, const void *_w2)
 {
 	t_weapon w1 = (t_weapon)_w1;
@@ -74,11 +85,14 @@ int		weapons_compare(const void *_w1, const void *_w2)
 int main()
 {
 	t_array arr;
+	t_arrptr arrp;
 
 	arr = empty_garr_64(weapon_destroy, sizeof(s_weapon));
-	weapon_add2(arr, weapon2("magical wand", 1));
+	arrp = empty_arrptr_create(weapon_destroy);
+
+	weapon_add2(arr, weapon1("magical wand", 1));
 	
-	weapon_add2(arr, weapon2("ak-47", 3));
+	weapon_add2(arr, weapon("ak-47", 3));
 	weapon_add2(arr, weapon2("red sword", 8));
 	weapon_add2(arr, weapon2("mlassa1", 5));
 	
@@ -88,7 +102,17 @@ int main()
 	weapon_add2(arr, weapon2("fleshlight", 1999));
 	weapon_add2(arr, weapon2("god", 0));
 	weapon_add2(arr, weapon2("catgirl", 1000000));
-	weapons_print(arr);
+
+
+	for (int i = 0; i < arr->len; i++)
+		arrptr_add(arrp, garr_get(arr, i));
+	//heap_sort(arr, arr->len, sizeof(s_weapon), weapons_compare);
+	//t_heap h = standard_heap_create(weapons_compare, weapon_destroy);
+	//heap_add(h, &arr->data[0]);
+	//heap_add(h, &arr->data[1]);
+	//heap_add(h, &arr->data[2]);
+	weapons_print2(arrp);
+	//printf("%s", ((t_weapon)garr_get(arr, 4))->name);
 	garr_destroy(arr);
 	//weapon_destroy(w);
 	return (0);
