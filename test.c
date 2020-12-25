@@ -39,15 +39,15 @@ void weapon_destroy(void *_w)
 	free(w->name);
 }
 
-void weapon_add(t_array arr, t_weapon w)
+void weapon_add(t_arrptr arr, t_weapon w)
 {
 	void *wp = (void*)w;
-	garr_add(arr, wp);
+	arrptr_add(arr, wp);
 }
 
-void weapon_add2(t_array arr, s_weapon w)
+void weapon_add2(t_array arr, t_weapon w)
 {
-	void *wp = (void*)&w;
+	void *wp = (void*)w;
 	garr_add(arr, wp);
 }
 
@@ -84,36 +84,37 @@ int		weapons_compare(const void *_w1, const void *_w2)
 
 int main()
 {
-	t_array arr;
 	t_arrptr arrp;
 
-	arr = empty_garr_64(weapon_destroy, sizeof(s_weapon));
+
 	arrp = empty_arrptr_create(weapon_destroy);
-
-	weapon_add2(arr, weapon1("magical wand", 1));
+	arrp->obj_cmp = weapons_compare;
+	weapon_add(arrp, weapon("magical wand", 1));
 	
-	weapon_add2(arr, weapon("ak-47", 3));
-	weapon_add2(arr, weapon2("red sword", 8));
-	weapon_add2(arr, weapon2("mlassa1", 5));
+	weapon_add(arrp, weapon("ak-47", 3));
+	weapon_add(arrp, weapon("red sword", 8));
+	weapon_add(arrp, weapon("mlassa1", 5));
 	
-	weapon_add2(arr, weapon2("mlassa2", -9));
-	weapon_add2(arr, weapon2("mlassa3", 6));
-	weapon_add2(arr, weapon2("dragon dildo", 2000));
-	weapon_add2(arr, weapon2("fleshlight", 1999));
-	weapon_add2(arr, weapon2("god", 0));
-	weapon_add2(arr, weapon2("catgirl", 1000000));
-
-
-	for (int i = 0; i < arr->len; i++)
-		arrptr_add(arrp, garr_get(arr, i));
-	//heap_sort(arr, arr->len, sizeof(s_weapon), weapons_compare);
-	//t_heap h = standard_heap_create(weapons_compare, weapon_destroy);
-	//heap_add(h, &arr->data[0]);
-	//heap_add(h, &arr->data[1]);
-	//heap_add(h, &arr->data[2]);
+	weapon_add(arrp, weapon("mlassa2", -9));
+	weapon_add(arrp, weapon("mlassa3", 6));
+	weapon_add(arrp, weapon("dragon dildo", 2000));
+	weapon_add(arrp, weapon("fleshlight", 1999));
+	weapon_add(arrp, weapon("god", 0));
+	weapon_add(arrp, weapon("catgirl", 1000000));
+	heap_sort(arrp, weapons_compare);
+/*
+	t_heap h = standard_heap_create(weapons_compare, weapon_destroy);
+	for (int i = 0; i < arrp->len; i++)
+		heap_add(h, arrptr_get(arrp, i));	
+	for (int i = 0; i < arrp->len; i++)
+	{
+		arrptr_set(arrp, i, heap_get_head_value(h));
+		heap_delete_head_value(h);
+	}
+	*/
 	weapons_print2(arrp);
 	//printf("%s", ((t_weapon)garr_get(arr, 4))->name);
-	garr_destroy(arr);
+	//garr_destroy(arr);
 	//weapon_destroy(w);
 	return (0);
 }

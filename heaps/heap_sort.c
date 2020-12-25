@@ -12,25 +12,34 @@
 
 #include "heap.h"
 
-void		heap_sort(void *array_, size_t nitems, size_t c_size, t_compar cmp)
+void		heap_sort(t_arrptr arr, t_compar cmp)
 {
 	t_heap	h;
-	char	*array;
-	size_t	index;
 
-	index = 0;
-	array = array_;
-	h = standard_heap_create(cmp, NULL);
-	while (index < nitems)
+
+	h = standard_heap_create(cmp, arr->obj_des);
+	/*
+	while (index < arr->len)
 	{
-		heap_add(h, array + index * c_size);
+		heap_add(h, arrptr_get(arr, index));
 		index++;
 	}
 	index = 0;
-	while(index < nitems)
+	while(index < h->len)
 	{
-		memory_copy((array + index * c_size), heap_get_head_value(h), c_size);
-		//heap_delete_head_value(h);
+		arrptr_set(arr, index, heap_get_head_value(h));
+		//memory_copy((array + index * c_size), heap_get_head_value(h), c_size);
+		heap_delete_head_value(h);
 		index++;
 	}
+	*/
+
+	for (int i = 0; i < arr->len; i++)
+		heap_add(h, arrptr_get(arr, i));	
+	for (int i = 0; i < arr->len; i++)
+	{
+		arrptr_set(arr, i, heap_get_head_value(h));
+		heap_delete_head_value(h);
+	}
+	//heap_destroy(h);
 }

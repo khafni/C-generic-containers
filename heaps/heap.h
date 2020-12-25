@@ -60,8 +60,8 @@ void		heap_add(t_heap h, void *n);
 void		heap_delete_head_value(t_heap h);
 
 /*
-**	sorting any array no matter its elements data type
+**	sorting any array of void pointers
 */
-void		heap_sort(void *array, size_t nitems, size_t c_size, t_compar cmp);
+void		heap_sort(t_arrptr arr, t_compar cmp);
 
 #endif
