@@ -6,7 +6,7 @@
 /*   By: khafni <khafni@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 11:03:31 by khafni            #+#    #+#             */
-/*   Updated: 2020/12/25 16:24:36 by khafni           ###   ########.fr       */
+/*   Updated: 2020/12/26 11:03:37 by khafni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,10 @@ void        hsort(void *array, size_t nitems, size_t size, t_compar cmp)
 	}
 	heap_sort(tmp, cmp);
 	index = 0;
-	/*
 	while (index < nitems)
 	{
 		ptr = (char*)array + index * size;
-		//memory_copy(ptr, arrptr_get(tmp, index), size);
+		memory_copy(ptr, arrptr_get(tmp, index), size);
 		index++;	
 	}
-	*/
 }

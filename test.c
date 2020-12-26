@@ -94,6 +94,7 @@ int num_compare(const void *_n1, const void *_n2)
 }
 int main()
 {
+	/*
 	t_arrptr arrp;
 
 
@@ -109,21 +110,63 @@ int main()
 	weapon_add(arrp, weapon("fleshlight", 1999));
 	weapon_add(arrp, weapon("god", 0));
 	weapon_add(arrp, weapon("catgirl", 1000000));
-	//heap_sort(arrp, weapons_compare);
-/*
-	t_heap h = standard_heap_create(weapons_compare, weapon_destroy);
-	for (int i = 0; i < arrp->len; i++)
-		heap_add(h, arrptr_get(arrp, i));	
-	for (int i = 0; i < arrp->len; i++)
-	{
-		arrptr_set(arrp, i, heap_get_head_value(h));
-		heap_delete_head_value(h);
-	}
-	*/
+	heap_sort(arrp, weapons_compare);
+
 	//weapons_print2(arrp);
 	arrptr_destroy(arrp);
-	int ia[4] = {4, 8, 1, -4};
-	hsort(ia, 4, sizeof(int), num_compare);
+	*/
+	t_arrptr intarr = standard_heap_create(num_compare, NULL);
+
+	int *ia = malloc(sizeof(int)* 4);
+	
+	ia[0] = 4;
+	ia[1] = 8;
+	ia[2] = 1;
+	ia[3] = -4;
+	//hsort(ia, 4, sizeof(int), num_compare);
+	for (int i = 0; i < 4; i++)
+		arrptr_add(intarr, ia + i);
+
+	heap_sort(intarr, num_compare);
+
+	/* for (int i = 0; i < 4; i++)
+		printf("%d\n", *((int*)arrptr_get(intarr, i))); */
+
+	printf("%d\n", *((int*)arrptr_get(intarr, 0)));
+
+	
+	ia[0] = *((int*)arrptr_get(intarr, 0));
+	ia[1] = *((int*)arrptr_get(intarr, 1));
+	ia[2] = *((int*)arrptr_get(intarr, 2));
+	ia[3] = *((int*)arrptr_get(intarr, 3));
+	
+
+	printf("%d\n", *((int*)arrptr_get(intarr, 0)));
+	/* printf("%d\n", *((int*)arrptr_get(intarr, 1)));
+	printf("%d\n", *((int*)arrptr_get(intarr, 2)));
+	printf("%d\n", *((int*)arrptr_get(intarr, 3))); */
+
+	/* printf("%d\n", *((int*)arrptr_get(intarr, 0)));
+	printf("%d\n", *((int*)arrptr_get(intarr, 1)));
+	printf("%d\n", *((int*)arrptr_get(intarr, 2)));
+	printf("%d\n", *((int*)arrptr_get(intarr, 3)));
+	printf("%d\n", *((int*)arrptr_get(intarr, 0)));
+	printf("%d\n", *((int*)arrptr_get(intarr, 1)));
+	printf("%d\n", *((int*)arrptr_get(intarr, 2)));
+	printf("%d\n", *((int*)arrptr_get(intarr, 3))); */
+	printf("\n\n");
+	/* printf("%d\n", ia[0]);
+	printf("%d\n", ia[1]);
+	printf("%d\n", ia[2]);
+	printf("%d\n", ia[3]); */
+	//for (int i = 0; i < 4; i++)
+		//a[i] = *((int*)arrptr_get(intarr, i));
+
+	//printf ("%d", ia[2] = *((int*)arrptr_get(intarr, 2)));
+	//printf("%d\n", *((int*)arrptr_get(intarr, 2)));
+	//printf("%d", *((int*)arrptr_get(h, 0)));
+	//heap_delete_head_value(h);
+	//hsort(ia, 4, sizeof(int), num_compare);
 	//printf("%s", ((t_weapon)garr_get(arr, 4))->name);
 	//garr_destroy(arr);
 	//weapon_destroy(w);

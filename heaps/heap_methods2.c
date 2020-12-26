@@ -6,7 +6,7 @@
 /*   By: khafni <khafni@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 07:46:01 by khafni            #+#    #+#             */
-/*   Updated: 2020/12/25 10:58:22 by khafni           ###   ########.fr       */
+/*   Updated: 2020/12/26 11:00:41 by khafni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,16 @@ void	heap_add(t_heap h, void *n)
 		}
 	}
 }
+/*
+**	GENERAL ALGORITHM :
+**	if heap got no element we return 0
+**	else if got 1 element we decrease the heap length by 1
+**	else :
+**	set the first element as the last one in the tree
+**	decrease the length to remove the head element
+**	and keep going down the tree from the new head of the tree (to sort it)
+**	and swipe parent, smallest child pairs whenever it is needed
+*/
 
 void	heap_delete_head_value(t_heap h)
 {
@@ -88,7 +98,7 @@ void	heap_delete_head_value(t_heap h)
 		last = h->len - 1;
 		h->data[0] = h->data[last];
 		index = 0;
-		h->len--;
+		h->len--;	
 		while (heap_count_children(h, index) > 0)
 		{
 			s_ch_index = heap_get_smallest_child_index(h, index);
@@ -97,6 +107,10 @@ void	heap_delete_head_value(t_heap h)
 				vp_swap(&h->data[index], &h->data[s_ch_index]);
 				index = s_ch_index;
 			}
+			else
+				break ;
 		}
+		
 	}
+	
 }
