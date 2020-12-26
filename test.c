@@ -37,6 +37,7 @@ void weapon_destroy(void *_w)
 {
 	t_weapon w = (t_weapon)_w;
 	free(w->name);
+	free(w);
 }
 
 void weapon_add(t_arrptr arr, t_weapon w)
@@ -82,6 +83,15 @@ int		weapons_compare(const void *_w1, const void *_w2)
 	return (-1);
 }
 
+int num_compare(const void *_n1, const void *_n2)
+{
+	int* n1 = (int*)_n1;
+	int* n2 = (int*)_n2;
+
+	if ((*n1) > (*n2))
+		return (1);
+	return (-1);
+}
 int main()
 {
 	t_arrptr arrp;
@@ -89,19 +99,17 @@ int main()
 
 	arrp = empty_arrptr_create(weapon_destroy);
 	arrp->obj_cmp = weapons_compare;
-	weapon_add(arrp, weapon("magical wand", 1));
-	
+	weapon_add(arrp, weapon("magical wand", 1));	
 	weapon_add(arrp, weapon("ak-47", 3));
 	weapon_add(arrp, weapon("red sword", 8));
 	weapon_add(arrp, weapon("mlassa1", 5));
-	
 	weapon_add(arrp, weapon("mlassa2", -9));
 	weapon_add(arrp, weapon("mlassa3", 6));
 	weapon_add(arrp, weapon("dragon dildo", 2000));
 	weapon_add(arrp, weapon("fleshlight", 1999));
 	weapon_add(arrp, weapon("god", 0));
 	weapon_add(arrp, weapon("catgirl", 1000000));
-	heap_sort(arrp, weapons_compare);
+	//heap_sort(arrp, weapons_compare);
 /*
 	t_heap h = standard_heap_create(weapons_compare, weapon_destroy);
 	for (int i = 0; i < arrp->len; i++)
@@ -112,7 +120,10 @@ int main()
 		heap_delete_head_value(h);
 	}
 	*/
-	weapons_print2(arrp);
+	//weapons_print2(arrp);
+	arrptr_destroy(arrp);
+	int ia[4] = {4, 8, 1, -4};
+	hsort(ia, 4, sizeof(int), num_compare);
 	//printf("%s", ((t_weapon)garr_get(arr, 4))->name);
 	//garr_destroy(arr);
 	//weapon_destroy(w);

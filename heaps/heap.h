@@ -25,6 +25,11 @@
 ** one O(nlog(n))
 */
 
+/*
+** SHORT DEFINITON : AN ARRAY THAT WE VISUALIZE AS
+** A BINARY TREE
+*/
+
 typedef t_arrptr	t_heap;
 
 # define HEAP_DEFAULT_ALLOC 128
@@ -63,5 +68,7 @@ void		heap_delete_head_value(t_heap h);
 **	sorting any array of void pointers
 */
 void		heap_sort(t_arrptr arr, t_compar cmp);
+
+void        hsort(void *array, size_t nitems, size_t size, t_compar cmp);
 
 #endif
