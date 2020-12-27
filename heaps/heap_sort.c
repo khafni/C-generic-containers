@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "heap.h"
+#include <strings.h>
 
 void		heap_sort(t_arrptr arr, t_compar cmp)
 {
@@ -33,29 +34,4 @@ void		heap_sort(t_arrptr arr, t_compar cmp)
 		i++;
 	}
 	heap_destroy(h);
-}
-
-void        hsort(void *array, size_t nitems, size_t size, t_compar cmp)
-{
-	t_arrptr tmp;
-	size_t index;
-	char *ptr;
-
-	index = 0;
-	cmp += 1 - 1;
-	tmp = empty_arrptr_create(NULL);
-	while (index < nitems)
-	{
-		ptr = (char*)array + index * size;
-		arrptr_add(tmp, ptr);
-		index++;	
-	}
-	heap_sort(tmp, cmp);
-	index = 0;
-	while (index < nitems)
-	{
-		ptr = (char*)array + index * size;
-		memory_copy(ptr, arrptr_get(tmp, index), size);
-		index++;	
-	}
 }
