@@ -6,7 +6,7 @@
 /*   By: khafni <khafni@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 16:52:19 by khafni            #+#    #+#             */
-/*   Updated: 2020/12/24 17:35:07 by khafni           ###   ########.fr       */
+/*   Updated: 2020/12/28 16:50:44 by khafni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,22 @@ void	vp_swap(void **v1, void **v2)
 	tmp = *v1;
 	*v1 = *v2;
 	*v2 = tmp;
+}
+
+void	memory_swap(void *a1_, void *a2_, size_t size)
+{
+	char	tmp;
+	char	*a1;
+	char	*a2;
+
+	a1 = (char*)a1_;
+	a2 = (char*)a2_;
+	while (size--)
+	{
+		tmp = *a1;
+		*a1 = *a2;
+		*a2 = tmp;
+		a1++;
+		a2++;
+	}
 }

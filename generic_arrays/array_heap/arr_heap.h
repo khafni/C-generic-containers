@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   heap.h                                             :+:      :+:    :+:   */
+/*   arr_heap.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: khafni <khafni@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 11:15:59 by khafni            #+#    #+#             */
-/*   Updated: 2020/12/25 11:21:45 by khafni           ###   ########.fr       */
+/*   Updated: 2020/12/28 18:43:25 by khafni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HEAP_H
-# define HEAP_H
-# include "../generic_parrays/garrptr.h"
+#ifndef PARR_HEAP_H
+# define PARR_HEAP_H
+# include "../garray.h"
 
 /*
 ** A Heap is a special Tree-based data structure in
@@ -30,13 +30,13 @@
 ** A BINARY TREE
 */
 
-typedef t_arrptr	t_heap;
+typedef t_array	t_heap;
 
 # define HEAP_DEFAULT_ALLOC 128
 
-t_heap		heap_create(int alloc, t_compar cmp, t_destructor des);
+t_heap		heap_create(int alloc, t_comp cmp, t_destruct des, int cell_size);
 
-t_heap		standard_heap_create(t_compar cmp, t_destructor des);
+t_heap		standard_heap_create(t_comp cmp, t_destruct des, int cell_size);
 
 void		heap_destroy(t_heap h);
 
@@ -67,8 +67,7 @@ void		heap_delete_head_value(t_heap h);
 /*
 **	sorting any array of void pointers
 */
-void		heap_sort(t_arrptr arr, t_compar cmp);
-
-void        hsort(void *array, size_t nitems, size_t size, t_compar cmp);
+void		heap_sort(t_array arr, t_comp cmp);
 
 #endif
+

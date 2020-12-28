@@ -1,32 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   heap_create.c                                      :+:      :+:    :+:   */
+/*   arr_heap_sort.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: khafni <khafni@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/23 11:16:01 by khafni            #+#    #+#             */
-/*   Updated: 2020/12/24 07:46:36 by khafni           ###   ########.fr       */
+/*   Created: 2020/12/25 11:03:31 by khafni            #+#    #+#             */
+/*   Updated: 2020/12/28 16:59:14 by khafni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "heap.h"
+#include "arr_heap.h"
+#include <strings.h>
 
-t_heap	heap_create(int alloc, t_compar cmp_fun, t_destructor des)
+void		heap_sort(t_array arr, t_comp cmp)
 {
-	t_arrptr h;
+	t_heap	h;
+	int		i;
 
-	h = empty_arrptr_create_size(alloc, des);
-	h->obj_cmp = cmp_fun;
-	return (h);
-}
-
-t_heap	standard_heap_create(t_compar cmp, t_destructor des)
-{
-	return (heap_create(HEAP_DEFAULT_ALLOC, cmp, des));
-}
-
-void	heap_destroy(t_heap h)
-{
-	arrptr_destroy(h);
+	h = standard_heap_create(cmp, arr->obj_des, arr->cell_size);
+	i = 0;
+	while (i < arr->len)
+	{
+		heap_add(h, garr_get(arr, i));
+		i++;
+	}
+	i = 0;
+	while (i < arr->len)
+	{
+		garr_set(arr, i, heap_get_head_value(h));
+		heap_delete_head_value(h);
+		i++;
+	}
+	heap_destroy(h);
 }

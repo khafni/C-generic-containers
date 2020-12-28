@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   heap_methods2.c                                    :+:      :+:    :+:   */
+/*   arr_heap_methods2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: khafni <khafni@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 07:46:01 by khafni            #+#    #+#             */
-/*   Updated: 2020/12/26 11:00:41 by khafni           ###   ########.fr       */
+/*   Updated: 2020/12/28 19:35:06 by khafni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "heap.h"
+#include "arr_heap.h"
 
 void	*heap_get_head_value(t_heap h)
 {
-	return (h->data[0]);
+	return (garr_get(h, 0));
 }
 
 int		heap_count_children(t_heap h, int i)
@@ -41,8 +41,8 @@ int		heap_get_smallest_child_index(t_heap h, int i)
 		return (heap_get_left_child_index(h, i));
 	else
 	{
-		lc = h->data[heap_get_left_child_index(h, i)];
-		rc = h->data[heap_get_right_child_index(h, i)];
+		lc = garr_get(h, heap_get_left_child_index(h, i));
+		rc = garr_get(h, heap_get_right_child_index(h, i));
 		if (((*(h->obj_cmp)) (lc, rc)) <= 0)
 			return (heap_get_left_child_index(h, i));
 		else
@@ -50,21 +50,27 @@ int		heap_get_smallest_child_index(t_heap h, int i)
 	}
 }
 
+
+void	head_compare_aux(t_heap)
 void	heap_add(t_heap h, void *n)
 {
 	int		index;
 	int		parent_index;
+	void	*v1;
+	void	*v2;
 
-	arrptr_add(h, n);
+	garr_add(h, n);
 	if (h->len > 1)
 	{
 		index = h->len - 1;
 		while (heap_has_parent(h, index))
 		{
 			parent_index = heap_get_parent_index(h, index);
-			if ((*(h->obj_cmp))(h->data[index], h->data[parent_index]) < 0)
+			v1 = garr_get(h, index);
+			v2 = garr_get(h, parent_index);
+			if ((*(h->obj_cmp))(v1, v2) < 0)
 			{
-				vp_swap(&h->data[index], &h->data[parent_index]);
+				memory_swap(v1, v2, h->cell_size);
 				index = parent_index;
 			}
 			else
@@ -72,6 +78,7 @@ void	heap_add(t_heap h, void *n)
 		}
 	}
 }
+
 /*
 **	GENERAL ALGORITHM :
 **	if heap got no element we return 0
@@ -89,28 +96,24 @@ void	heap_delete_head_value(t_heap h)
 	int		last;
 	int		s_ch_index;
 
-	if (h->len == 0)
-		return ;
-	else if (h->len == 1)
+	if (h->len == 1)
 		h->len = 0;
-	else
+	else if (h->len > 0)
 	{
 		last = h->len - 1;
-		h->data[0] = h->data[last];
+		garr_set(h, 0, garr_get(h, last));
 		index = 0;
-		h->len--;	
+		h->len--;
 		while (heap_count_children(h, index) > 0)
 		{
 			s_ch_index = heap_get_smallest_child_index(h, index);
-			if ((*(h->obj_cmp))(h->data[index], h->data[s_ch_index]) > 0)
+			if ((*(h->obj_cmp))((char*)h->data + index * h->cell_size, (char*)h->data + s_ch_index * h->cell_size) > 0)
 			{
-				vp_swap(&h->data[index], &h->data[s_ch_index]);
+				memory_swap((char*)h->data + index * h->cell_size, (char*)h->data + s_ch_index * h->cell_size, h->cell_size);
 				index = s_ch_index;
 			}
 			else
 				break ;
 		}
-		
 	}
-	
 }

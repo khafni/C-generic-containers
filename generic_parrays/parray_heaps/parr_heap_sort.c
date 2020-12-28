@@ -1,37 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   heap_sort.c                                        :+:      :+:    :+:   */
+/*   parr_heap_sort.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: khafni <khafni@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 11:03:31 by khafni            #+#    #+#             */
-/*   Updated: 2020/12/26 11:03:37 by khafni           ###   ########.fr       */
+/*   Updated: 2020/12/28 14:34:18 by khafni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "heap.h"
+#include "parr_heap.h"
 #include <strings.h>
 
-void		heap_sort(t_arrptr arr, t_compar cmp)
+void		pheap_sort(t_arrptr arr, t_compar cmp)
 {
-	t_heap	h;
-	int i;
+	t_pheap	h;
+	int		i;
 
-
-	h = standard_heap_create(cmp, arr->obj_des);
+	h = standard_pheap_create(cmp, arr->obj_des);
 	i = 0;
 	while (i < arr->len)
 	{
-		heap_add(h, arrptr_get(arr, i));	
+		pheap_add(h, arrptr_get(arr, i));
 		i++;
 	}
 	i = 0;
 	while (i < arr->len)
 	{
-		arrptr_set(arr, i, heap_get_head_value(h));
-		heap_delete_head_value(h);
+		arrptr_set(arr, i, pheap_get_head_value(h));
+		pheap_delete_head_value(h);
 		i++;
 	}
-	heap_destroy(h);
+	pheap_destroy(h);
 }

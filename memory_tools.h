@@ -6,7 +6,7 @@
 /*   By: khafni <khafni@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 16:34:00 by khafni            #+#    #+#             */
-/*   Updated: 2020/12/24 17:31:13 by khafni           ###   ########.fr       */
+/*   Updated: 2020/12/28 16:48:25 by khafni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,11 @@ void	*memory_grow(void *address, size_t old_size, size_t new_size);
 */
 
 void	vp_swap(void **v1, void **v2);
+
+/*
+**  swapping two continuous areas of memory that have the same size;
+*/
+
+void	memory_swap(void *a1_, void *a2_, size_t size);
 
 #endif

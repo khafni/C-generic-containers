@@ -6,7 +6,7 @@
 /*   By: khafni <khafni@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 01:40:36 by khafni            #+#    #+#             */
-/*   Updated: 2020/12/20 10:38:52 by khafni           ###   ########.fr       */
+/*   Updated: 2020/12/28 14:44:13 by khafni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ struct			s_array
 	int			alloc;
 	int			cell_size;
 	t_destruct	obj_des;
+	t_comp		obj_cmp;
 };
 
 /*
