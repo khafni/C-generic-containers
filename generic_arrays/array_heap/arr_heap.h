@@ -6,7 +6,7 @@
 /*   By: khafni <khafni@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 11:15:59 by khafni            #+#    #+#             */
-/*   Updated: 2020/12/28 18:43:25 by khafni           ###   ########.fr       */
+/*   Updated: 2020/12/29 15:21:09 by khafni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,3 @@ void		heap_delete_head_value(t_heap h);
 void		heap_sort(t_array arr, t_comp cmp);
 
 #endif
-
