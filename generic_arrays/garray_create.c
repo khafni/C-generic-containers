@@ -52,5 +52,5 @@ void			garr_destroy(t_array a)
 
 void			*garr_get(t_array a, int index)
 {
-	return (a->data + index * a->cell_size);
+	return ((char*)a->data + index * a->cell_size);
 }

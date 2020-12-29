@@ -50,8 +50,11 @@ int		heap_get_smallest_child_index(t_heap h, int i)
 	}
 }
 
-
+/* 
 void	head_compare_aux(t_heap)
+{
+
+} */
 void	heap_add(t_heap h, void *n)
 {
 	int		index;
@@ -107,9 +110,9 @@ void	heap_delete_head_value(t_heap h)
 		while (heap_count_children(h, index) > 0)
 		{
 			s_ch_index = heap_get_smallest_child_index(h, index);
-			if ((*(h->obj_cmp))((char*)h->data + index * h->cell_size, (char*)h->data + s_ch_index * h->cell_size) > 0)
+			if ((*(h->obj_cmp))(garr_get(h, index), garr_get(h, s_ch_index)) > 0)
 			{
-				memory_swap((char*)h->data + index * h->cell_size, (char*)h->data + s_ch_index * h->cell_size, h->cell_size);
+				memory_swap(garr_get(h, index), garr_get(h, s_ch_index), h->cell_size);
 				index = s_ch_index;
 			}
 			else
