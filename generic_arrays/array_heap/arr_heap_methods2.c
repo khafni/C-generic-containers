@@ -50,11 +50,7 @@ int		heap_get_smallest_child_index(t_heap h, int i)
 	}
 }
 
-/* 
-void	head_compare_aux(t_heap)
-{
 
-} */
 void	heap_add(t_heap h, void *n)
 {
 	int		index;
