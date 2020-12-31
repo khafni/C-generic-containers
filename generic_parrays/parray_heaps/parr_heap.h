@@ -69,6 +69,5 @@ void		pheap_delete_head_value(t_pheap h);
 */
 void		pheap_sort(t_arrptr arr, t_compar cmp);
 
-void		phsort(void *array, size_t nitems, size_t size, t_compar cmp);
 
 #endif
